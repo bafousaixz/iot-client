@@ -1,0 +1,6 @@
+<div *ngIf="route.children.length === 0">
+    <app-config-carousel [data$]="temp$" [name]="'temp'"></app-config-carousel>
+    <app-station [label]="'temp'"></app-station>
+
+</div>
+<router-outlet></router-outlet>

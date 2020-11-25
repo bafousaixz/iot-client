@@ -1,0 +1,5 @@
+<div *ngIf="route.children.length === 0" class="card shadow mx-auto m-3">
+    <app-config-carousel [data$]="rainflow$" [name]="'rainflow'"></app-config-carousel>
+    <app-station [label]="'rainflow'"></app-station>
+</div>
+<router-outlet></router-outlet>

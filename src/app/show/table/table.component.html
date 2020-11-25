@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div *ngIf="station" class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables {{station.name}} </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>#</th>
+                        <th>Images</th>
+                        <th>Rainflow</th>
+                        <th>Windspeed</th>
+                        <th>Temp</th>
+                        <th>Detect</th>
+                        <th style="width: 200px;">Time</th>
+                    </tr>
+                    <tr *ngFor="let iot of iot$ | async; index as i" [ngStyle]="{ backgroundColor: iot.detect_content ? '#d35400' : '' }"  class="target" > 
+                        <td>{{i+1}}</td>
+                        
+                        <td>
+                            <img class="img-fluid img-thumbnail" src="../../../assets{{iot.filepath}}{{iot.filename}}.jpg" alt="">
+                        </td>
+                        <td >
+                            <p> {{iot.rainflow}}</p>
+                        </td>
+                        <td >
+                            <p> {{iot.windspeed}}</p>
+                        </td>
+                        <td >
+                            <p> {{iot.temp}}</p>
+                        </td>
+                        <td>
+                            <p *ngIf='!iot.detect_content'>No</p>
+                            <p *ngIf='iot.detect_content'>{{iot.detect_content}}</p>
+                        </td>
+                        <td>
+                        <p> {{iot.time  | date:'medium' }}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

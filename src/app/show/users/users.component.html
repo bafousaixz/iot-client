@@ -1,0 +1,34 @@
+<div style="display: none" >
+    <app-user (OutputValue)="handle($event)"></app-user>
+</div>
+<div *ngIf="isAdmin" class="container-fluid">
+    <div class="card users-list" style="margin: 10px;">
+        <div class="search">
+            <i class="fas fa-search"></i>
+            <input type="text" [(ngModel)]="content" name="question" placeholder="Search">
+        </div>
+        <div class="container-qs">
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Avata</th>
+                    <th>Username</th>
+                </tr>
+                <tr class="list-question" *ngFor="let user of users$ | async | filter:content; index as i">
+                    <td>
+                        {{i + 1}}
+                    </td>
+                    <td >
+                        <img [src]="user.image" alt="" style="width: 50px; height: 50px; border-radius: 50%;">
+                    </td>
+                    <td>
+                        {{user.username}}
+                    </td>
+                    <td style="width: 30px;">
+                        <h2 (click)="delete(user._id)">Delete</h2>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="card shadow mb-4" style="margin: 70px;">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{label}} Chart</h6>
+  </div>
+  <div class="card-body">
+      <div *ngIf="label" class="chart-area">
+          <canvas [id]="label"></canvas>
+      </div>
+      <div *ngIf="chart === 'rainflow' || chart === 'windspeed' || chart === 'temp'" class="chart-area">
+        <canvas [id]="chart"></canvas>
+    </div>
+  </div>
+</div>

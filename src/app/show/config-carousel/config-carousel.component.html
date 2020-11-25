@@ -1,0 +1,15 @@
+<ngb-carousel *ngIf="data" class="m-5" style="width: 600px; height: 400px;">
+    <ng-template ngbSlide *ngFor="let image of data">
+        <div class="picsum-img-wrapper">
+          <img src="../../../assets{{image.filepath}}{{image.filename}}.jpg" alt="Random second slide" style="width: 600px; height: 400px;">
+        </div>
+        <div class="carousel-caption">
+          <div class="card" style="background: rgba(44, 62, 80, .7);">
+              <h3>{{image.time | date}}</h3>
+              <h4 *ngIf="name === 'rainflow'">RainFlow: {{image.rainflow}}</h4>
+              <h4 *ngIf="name === 'windspeed'">WindSpeed: {{image.windspeed}}</h4>
+              <h4 *ngIf="name === 'temp'">Temp: {{image.temp}}</h4>
+          </div>
+        </div>
+    </ng-template>
+</ngb-carousel>
