@@ -1,0 +1,11 @@
+<div *ngIf="chart === 'rainflow'" class="content bg-chart bg-rain">
+    <app-chart [chart]="chart"></app-chart>
+</div>
+
+<div *ngIf="chart === 'windspeed'" class="content bg-chart bg-wind">
+    <app-chart [chart]="chart"></app-chart>
+</div>
+
+<div *ngIf="chart === 'temp'" class="content bg-chart bg-temp">
+    <app-chart [chart]="chart"></app-chart>
+</div>

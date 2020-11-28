@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { IOTModel } from '../_models/iot.model';
 import { IotService } from '../_services/iot.service';
@@ -13,28 +14,53 @@ export class ChartComponent implements OnInit {
 
   @Input() stationId: string;
   @Input() label: string;
-  chartRainflow;
-  chartWindspeed;
+  @Input() chart: string
+  chartConfig;
   iot: IOTModel;
-  chart: string;
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
     private iotService: IotService,
   ) { }
 
-  ngOnInit(): void {
-    this.chart = this.router.url.split('/')[this.router.url.split('/').length -2];
+  ngOnInit(): void{
+   this.configChart();
+  }
+
+  removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.pop();
+    chart.update();
+  }
+
+  updateChart() {
+    this.removeData(this.chartConfig);
+    this.configChart();
+  }
+
+  configChart() {
+    let x = [];
+    let y = [];
     if (this.chart === 'rainflow' || this.chart === 'windspeed' || this.chart === 'temp') {
       this.stationId = this.router.url.split('/')[this.router.url.split('/').length -3];
     }
     this.iotService.getIOT(this.stationId).subscribe(data => {
       this.iot = data;
-      let x = data.map(val => new Date(val.time).toLocaleDateString());
-      let y;
+      if (this.range.value.start && this.range.value.end) {
+        data = data.filter(x => {
+          return Date.parse(new Date(x.time).toLocaleDateString()) >= Date.parse(this.range.value.start) && Date.parse(new Date(x.time).toLocaleDateString()) <= Date.parse(this.range.value.end)
+        })
+      }
+      x = data.map(val => new Date(val.time).toLocaleDateString())
+      // x = [...new Set(x)];
       if (this.label === 'rainflow' || this.chart === 'rainflow') {
         y = data.map(val => val.rainflow);
-        this.chartRainflow = new Chart('rainflow', {
+        this.chartConfig = new Chart('rainflow', {
           type: 'line',
           data: {
             labels: x,
@@ -108,7 +134,7 @@ export class ChartComponent implements OnInit {
       }
       if (this.label ==='windspeed' || this.chart ==='windspeed') {
         y = data.map(val => val.windspeed);
-        this.chartWindspeed = new Chart('windspeed', {
+        this.chartConfig = new Chart('windspeed', {
           type: 'line',
           data: {
             labels: x,
@@ -182,7 +208,7 @@ export class ChartComponent implements OnInit {
       }
       if (this.label === 'temp' || this.chart === 'temp') {
         y = data.map(val => val.temp);
-        this.chartRainflow = new Chart('temp', {
+        this.chartConfig = new Chart('temp', {
           type: 'line',
           data: {
             labels: x,

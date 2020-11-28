@@ -1,0 +1,24 @@
+.bg-chart {
+    height: 104vh;
+    position: relative;
+    margin-top: -100px;
+    padding-top: 100px;
+}
+
+.bg-rain {
+    background: url("../../../assets/rain.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-wind {
+    background: url("../../../assets/wind.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-temp {
+    background: url("../../../assets/temp.jpg");
+    background-size: cover;
+    background-position: center;
+}

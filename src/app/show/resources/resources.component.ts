@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { StationModel } from '../_models/stations.model';
+import { StationService } from '../_services/station.service';
 
 @Component({
   selector: 'app-resources',
@@ -15,13 +18,33 @@ export class ResourcesComponent implements OnInit {
   table: boolean;
   user: boolean;
   isAdmin: boolean;
+  stations: StationModel;
+  station$: Observable<object>;
+  select: string;
   id: string = this.route.snapshot.paramMap.get('id');
   
   constructor(
+    private router: Router,
     public route: ActivatedRoute,
+    private stationService: StationService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.station$ = this.stationService.getStation(this.id);
+    this.getStations();
+  }
+ 
+  getStations() {
+    this.stationService.getStations().subscribe((data) => {
+      this.stations = data;
+    })
+  }
+
+  getURL(e){
+    this.select =  e.target.value;
+    this.station$ = this.stationService.getStation(this.select);
+    this.router.navigateByUrl(`iot/${this.select}`, { state: { hello: 'world' } });
+  }
 
   handle(e) {
     if (e[1] === 1) {

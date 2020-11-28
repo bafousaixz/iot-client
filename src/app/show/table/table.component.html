@@ -1,26 +1,27 @@
-<div class="container-fluid">
+<div class="container-fluid m-1">
     <div class="card shadow mb-4">
         <div *ngIf="station" class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables {{station.name}} </h6>
+            <div class="example-button-row" style="float: right;">
+                <button (click)="downloadPDF()" mat-raised-button color="primary">Download PDF</button>
+            </div>
         </div>
-        <div class="card-body">
+        
+        <div id="content" class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table  id="dataTable" width="100%" cellspacing="0">
                     <tr>
                         <th>#</th>
-                        <th>Images</th>
                         <th>Rainflow</th>
                         <th>Windspeed</th>
                         <th>Temp</th>
                         <th>Detect</th>
                         <th style="width: 200px;">Time</th>
+                        <th></th>
                     </tr>
-                    <tr *ngFor="let iot of iot$ | async; index as i" [ngStyle]="{ backgroundColor: iot.detect_content ? '#d35400' : '' }"  class="target" > 
-                        <td>{{i+1}}</td>
-                        
-                        <td>
-                            <img class="img-fluid img-thumbnail" src="../../../assets{{iot.filepath}}{{iot.filename}}.jpg" alt="">
-                        </td>
+                    <tr *ngFor="let iot of iot$ | async; index as i" [ngStyle]="{ backgroundColor: iot.detect_content ? '#d35400' : '' }"  class="target" (click)="openPopup(iot)" > 
+                        <td>{{i+1}}
+                        </td>                  
                         <td >
                             <p> {{iot.rainflow}}</p>
                         </td>
@@ -37,9 +38,40 @@
                         <td>
                         <p> {{iot.time  | date:'medium' }}</p>
                         </td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
+
+    <div *ngIf="popup" class="container-popup">
+        <div class="blog-card edit-popup">
+            <button (click)="popup = false" class="btn-close"><i class="fas fa-times"></i></button>
+          <div class="inner-part" >
+            <label class="img">
+              <img class="img-1" src="../../../assets{{iot.filepath}}{{iot.filename}}.jpg" alt="">
+            </label>
+            <div class="content1">
+                <div class="example-container">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Rainflow</mat-label>
+                      <input matInput placeholder="{{iot.rainflow}}">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Windspeed</mat-label>
+                        <input matInput placeholder="{{iot.windspeed}}">
+                      </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Temperature</mat-label>
+                        <input matInput placeholder="{{iot.temp}}">
+                    </mat-form-field>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
 </div>

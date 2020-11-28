@@ -10,6 +10,8 @@ import { TempComponent } from './temp/temp.component';
 import { ChartComponent } from './chart/chart.component';
 import { TableComponent } from './table/table.component';
 import { UsersComponent } from './users/users.component';
+import { ChartDetailComponent } from './chart-detail/chart-detail.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 const ViewRoutes: Routes = [ 
     {
@@ -21,58 +23,16 @@ const ViewRoutes: Routes = [
                 component: ResourcesComponent,
                 children: [
                     { 
-                        path: '',
-                        component: StationComponent
-                    },
-                    { 
                         path: 'station',
                         component: StationComponent
                     },
                     { 
-                        path: 'rainflow',
-                        component: RainflowComponent,
-                        children: [
-                            {
-                                path: 'detail',
-                                component: RainflowComponent,
-                            },
-                            {
-                                path: 'chart',
-                                component: ChartComponent,
-                            }
-                        ]
-                    },
-                    { 
-                        path: 'windspeed',
-                        component: WindspeedComponent,
-                        children: [
-                            {
-                                path: 'detail',
-                                component: WindspeedComponent,
-                            },
-                            {
-                                path: 'chart',
-                                component: ChartComponent,
-                            }
-                        ]
-                    },
-                    { 
-                        path: 'temp',
-                        component: TempComponent,
-                        children: [
-                            {
-                                path: 'detail',
-                                component: TempComponent,
-                            },
-                            {
-                                path: 'chart',
-                                component: ChartComponent,
-                            }
-                        ]
-                    },
-                    { 
                         path: 'charts',
                         component: ChartsComponent
+                    },
+                    {
+                        path: 'analytic',
+                        component: AnalyticsComponent
                     },
                     { 
                         path: 'table',

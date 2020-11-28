@@ -1,29 +1,7 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-      <i class="fa fa-bars"></i>
-  </button>
-    <div class="row" style="margin-left: 250px;">
-        <div class="col" >
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>--Select Stations--</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button (click)="handle($event)" ngbDropdownItem  *ngFor="let station of stations" [value]="station._id">{{station.name}}</button>
-            </div>
-          </div>
-        </div>
-    </div>
+<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
   <ul class="navbar-nav ml-auto">
       <div class="topbar-divider d-none d-sm-block"></div>
       <app-user></app-user>
   </ul>
 </nav>
-<div *ngIf="route.children.length === 0">
-  <div class="mid">
-      <div class="content">
-          <div *ngIf="stations" class="flexbox">
-              <a *ngFor="let r of stations | filter:search" routerLink="{{r._id}}" class="box">{{r.name}}</a>
-          </div>
-      </div>
-  </div>
-</div>
 <router-outlet></router-outlet>

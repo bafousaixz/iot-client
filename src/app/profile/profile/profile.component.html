@@ -22,6 +22,7 @@
 
         <div class="select">
             <div *ngIf="profile1 == true" class="row" style="margin-left: 100px;">
+
                 <div>
                     <div>
                         <h6>User Name: </h6>
@@ -44,7 +45,23 @@
 
             <div *ngIf="profile1 == false">
                 <form class="form1" (ngSubmit)="editUser()">
-                    <div>
+                    <div class="example-container">
+                        <mat-form-field appearance="fill">
+                          <mat-label>User Name</mat-label>
+                          <input matInput placeholder="Username">
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Full Name</mat-label>
+                            <input matInput placeholder="Full Name">
+                          </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tel</mat-label>
+                            <input matInput placeholder="Tel">
+                        </mat-form-field>
+                    </div>
+                    <!-- <div>
                         <label>First Name: </label>
                         <input class="form-control" type="text" name="firstname" [(ngModel)]="user.firstName">
                     </div>
@@ -59,7 +76,7 @@
                     <div>
                         <label>Email: </label>
                         <input class="form-control" type="text" name="email" [(ngModel)]="user.email">
-                    </div>
+                    </div> -->
                     <button>Save</button>
                 </form>
             </div>

@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ComponentModule } from  './component/component.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ComponentModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     NgbModule,
   ],
   providers: [],
