@@ -22,6 +22,14 @@ export class IotService {
     return this.http.get<any>(this.url + id)
   }
 
+  postIOT(iot: IOTModel): Observable<any> {
+    return this.http.post<any>(this.url, iot)
+  }
+
+  putIOT(iot: IOTModel): Observable<any> {
+    return this.http.put<any>(`${this.url}${iot._id}`, iot)
+  }
+
   deleteIot(id: string): Observable<any> {
     return this.http.delete<any>(this.url + id)
   }

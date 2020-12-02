@@ -19,7 +19,7 @@
                         <th style="width: 200px;">Time</th>
                         <th></th>
                     </tr>
-                    <tr *ngFor="let iot of iot$ | async; index as i" [ngStyle]="{ backgroundColor: iot.detect_content ? '#d35400' : '' }"  class="target" (click)="openPopup(iot)" > 
+                    <tr *ngFor="let iot of iot$ | async; index as i" class="target"> 
                         <td>{{i+1}}
                         </td>                  
                         <td >
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div *ngIf="popup" class="container-popup">
+    <!-- <div *ngIf="popup" class="container-popup">
         <div class="blog-card edit-popup">
             <button (click)="popup = false" class="btn-close"><i class="fas fa-times"></i></button>
           <div class="inner-part" >
@@ -72,6 +72,6 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
 
 </div>

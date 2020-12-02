@@ -11,12 +11,12 @@ import { StationService } from '../_services/station.service';
 })
 export class ResourcesComponent implements OnInit {
 
-  rainflow: boolean = true;
-  windspeed: boolean = true;
-  temp: boolean = true;
+  image: boolean;
+  analytic: boolean;
   chart: boolean;
   table: boolean;
   user: boolean;
+  config: boolean;
   isAdmin: boolean;
   stations: StationModel;
   station$: Observable<object>;

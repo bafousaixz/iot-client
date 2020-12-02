@@ -12,6 +12,8 @@ import { TableComponent } from './table/table.component';
 import { UsersComponent } from './users/users.component';
 import { ChartDetailComponent } from './chart-detail/chart-detail.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { ImagesComponent } from './images/images.component';
+import { ConfigTableComponent } from './config-table/config-table.component';
 
 const ViewRoutes: Routes = [ 
     {
@@ -31,12 +33,20 @@ const ViewRoutes: Routes = [
                         component: ChartsComponent
                     },
                     {
+                        path: 'images',
+                        component: ImagesComponent
+                    },
+                    {
                         path: 'analytic',
                         component: AnalyticsComponent
                     },
                     { 
                         path: 'table',
                         component: TableComponent
+                    },
+                    { 
+                        path: 'config',
+                        component: ConfigTableComponent
                     },
                     { 
                         path: 'users',

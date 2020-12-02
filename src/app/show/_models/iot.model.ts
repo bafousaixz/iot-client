@@ -4,11 +4,13 @@ export class IOTModel {
     temp: number;
     rainflow: number;
     windspeed: number;
-    control: number;
-    vdc: number;
+    // control: number;
+    // vdc: number;
     detect_content: string;
-    duration: string;
+    // duration: string;
     filename: string;
-    filepath: string;
-    time: string
+    // filepath: string;
+    time: number;
+    _time?: Date;
+    machine_id: string;
 }

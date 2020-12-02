@@ -3,7 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { IOTModel } from '../_models/iot.model';
+import { StationModel } from '../_models/stations.model';
 import { IotService } from '../_services/iot.service';
+import { StationService } from '../_services/station.service';
 
 @Component({
   selector: 'app-chart',
@@ -16,7 +18,9 @@ export class ChartComponent implements OnInit {
   @Input() label: string;
   @Input() chart: string
   chartConfig;
+  selected: '123';
   iot: IOTModel;
+  stations: StationModel;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -26,37 +30,31 @@ export class ChartComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     private iotService: IotService,
+    private stationService: StationService,
   ) { }
 
   ngOnInit(): void{
-   this.configChart();
-  }
-
-  removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.pop();
-    chart.update();
-  }
-
-  updateChart() {
-    this.removeData(this.chartConfig);
+    if (this.chart === 'rainflow' || this.chart === 'windspeed' || this.chart === 'temp') {
+      this.stationId = this.router.url.split('/')[this.router.url.split('/').length -3];
+    }
+    this.getStations();
     this.configChart();
   }
 
   configChart() {
     let x = [];
     let y = [];
-    if (this.chart === 'rainflow' || this.chart === 'windspeed' || this.chart === 'temp') {
-      this.stationId = this.router.url.split('/')[this.router.url.split('/').length -3];
-    }
     this.iotService.getIOT(this.stationId).subscribe(data => {
+      data.map(x => {
+        return x._time = new Date(x.time * 1000);
+      })
       this.iot = data;
       if (this.range.value.start && this.range.value.end) {
         data = data.filter(x => {
-          return Date.parse(new Date(x.time).toLocaleDateString()) >= Date.parse(this.range.value.start) && Date.parse(new Date(x.time).toLocaleDateString()) <= Date.parse(this.range.value.end)
+          return Date.parse(new Date(x._time).toLocaleDateString()) >= Date.parse(this.range.value.start) && Date.parse(new Date(x._time).toLocaleDateString()) <= Date.parse(this.range.value.end)
         })
       }
-      x = data.map(val => new Date(val.time).toLocaleDateString())
+      x = data.map(val => new Date(val._time).toLocaleDateString())
       // x = [...new Set(x)];
       if (this.label === 'rainflow' || this.chart === 'rainflow') {
         y = data.map(val => val.rainflow);
@@ -282,6 +280,29 @@ export class ChartComponent implements OnInit {
       }
      
     }) 
+  }
+
+  removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.pop();
+    chart.update();
+  }
+
+  getStations() {
+    this.stationService.getStations().subscribe(data => {
+      if (data) {
+        this.stations = data;
+      }
+    })
+  }
+
+  updateChart() {
+    this.removeData(this.chartConfig);
+    this.configChart();
+  }
+
+  selectStation() {
+    this.stationId = this.selected
   }
 
 }

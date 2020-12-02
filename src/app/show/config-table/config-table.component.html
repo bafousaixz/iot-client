@@ -1,0 +1,95 @@
+<div class="container-fluid m-1">
+    <div class="card shadow mb-4">
+        <div *ngIf="station" class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables {{station.name}} </h6>
+        </div>
+        <button (click)="add = true">add</button>
+
+        <div *ngIf="add">
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Rain</mat-label>
+                    <input [(ngModel)]="rainflow" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Wind</mat-label>
+                    <input [(ngModel)]="windspeed" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Temp</mat-label>
+                    <input [(ngModel)]="temp" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Detect</mat-label>
+                    <input [(ngModel)]="detect_content" matInput>
+                </mat-form-field>
+                <br>
+                <input (change)="onUploadChange($event)" type="file" accept=".png, .jpg, .jpeg .svg" class="input-img">
+                <br>
+
+                <button (click)="addIot()">add</button>
+              </div>
+        </div>
+
+        <div id="content" class="card-body">
+            <div class="table-responsive">
+                <table  id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>#</th>
+                        <th>Rainflow</th>
+                        <th>Windspeed</th>
+                        <th>Temp</th>
+                        <th>Detect</th>
+                        <th style="width: 200px;">Time</th>
+                        <th></th>
+                    </tr>
+                    <!-- [ngStyle]="{ backgroundColor: iot.detect_content !== 'No' ? '#d35400' : '' }"  -->
+                    <tr *ngFor="let iot of iot; index as i"> 
+                        <td>
+                           <b> {{i+1}}</b>
+                        </td>                  
+                        <td >
+                            <mat-form-field class="example-full-width" *ngIf="iot._id === idEdit" style="width: 150px;">
+                                <mat-label>Rain</mat-label>
+                                <input [(ngModel)]="iot.rainflow" matInput>
+                            </mat-form-field>
+                            <p *ngIf="iot._id !== idEdit"> {{iot.rainflow}}</p>
+                        </td>
+                        <td >
+                            <mat-form-field class="example-full-width" *ngIf="iot._id === idEdit" style="width: 150px;">
+                                <mat-label>Wind</mat-label>
+                                <input [(ngModel)]="iot.windspeed" matInput>
+                            </mat-form-field>
+                            <p *ngIf="iot._id !== idEdit"> {{iot.windspeed}}</p>
+                        </td>
+                        <td >
+                            <mat-form-field class="example-full-width" *ngIf="iot._id === idEdit" style="width: 150px;">
+                                <mat-label>Temp</mat-label>
+                                <input [(ngModel)]="iot.temp" matInput>
+                            </mat-form-field>
+                            <p *ngIf="iot._id !== idEdit"> {{iot.temp}}</p>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width" *ngIf="iot._id === idEdit" style="width: 150px;">
+                                <mat-label>Detect</mat-label>
+                                <input [(ngModel)]="iot.detect_content" matInput>
+                            </mat-form-field>
+                           <div  *ngIf="iot._id !== idEdit">
+                                <p *ngIf='!iot.detect_content'>No</p>
+                                <p *ngIf='iot.detect_content'>{{iot.detect_content}}</p>
+                           </div>
+                        </td>
+                        <td>
+                        <p *ngIf="iot._id !== idEdit"> {{iot._time}}</p>
+                        </td>
+                        <td>
+                            <button *ngIf="idEdit === iot._id" (click)="editIot(iot)" class="btn-edit"><i class="fas fa-save"></i></button>
+                            <button *ngIf="idEdit === iot._id" (click)="deleteIot(iot._id)" class="btn-edit btn-delete"><i class="fas fa-trash-alt"></i></button>
+                            <button  *ngIf="iot._id !== idEdit" (click)="edit = true; idEdit = iot._id"  class="btn-edit"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

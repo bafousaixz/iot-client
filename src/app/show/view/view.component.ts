@@ -16,21 +16,20 @@ export class ViewComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
     private stationService: StationService,
-  ) { }
+  ) { 
+    this.getStations();
+  }
 
   ngOnInit(): void {
-    this.getStations();
+    
   }
  
   getStations() {
     this.stationService.getStations().subscribe((data) => {
       this.stations = data;
+      const url = this.stations[0]._id
+      this.router.navigateByUrl(`iot/${url}`, { state: { hello: 'world' } });
     })
-  }
-
-  handle(e){
-    this.select =  e.target.value; 
-    this.router.navigateByUrl(`iot/${this.select}`, { state: { hello: 'world' } });
   }
 
 }

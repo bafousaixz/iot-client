@@ -64,6 +64,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { ImagesComponent } from './images/images.component';
+import { AnalyticConfigComponent } from './analytic-config/analytic-config.component';
+import { ConfigTableComponent } from './config-table/config-table.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     // DialogComponent,
     AnalyticsComponent,
     TableComponent, 
-    ConfigCarouselComponent, UsersComponent, WellcomeComponent, ChartDetailComponent
+    ConfigCarouselComponent, UsersComponent, WellcomeComponent, ChartDetailComponent, ImagesComponent, AnalyticConfigComponent, ConfigTableComponent
   ],
   imports: [
     FormsModule,
