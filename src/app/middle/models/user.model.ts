@@ -1,4 +1,5 @@
 export class UserModel {
+    _id?: string;
     username?:string;
     password?:string;
     role?: number;
@@ -6,5 +7,5 @@ export class UserModel {
     lastName: string;
     email?: string;
     tel?:string;
-    image?:string;
+    image?:string | any;
 }

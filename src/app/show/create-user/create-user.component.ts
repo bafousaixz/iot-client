@@ -1,15 +1,15 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { UserModel } from 'src/app/middle/models/user.model';
 import { LoginService } from 'src/app/middle/services/login.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css', '../login/login.component.css']
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
-
-export class SignupComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
 
   lastName: string;
   userName: string;
@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   constructor(
     public router: Router,
     public userService: LoginService,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -30,12 +31,13 @@ export class SignupComponent implements OnInit {
       password: this.password,
       image: this.image,
     };
+    console.log(s)
     this.userService.signUp(s).subscribe((data) => {
       if(data) {
-        window.localStorage.setItem('token', data['token'])
-        this.router.navigate(['/iot']);
+        this.location.back();
       }
     });
   }
+
 
 }

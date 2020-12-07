@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   editUser() {
     let profile: UserModel = {
+      _id: this.user._id,
       firstName: this.user.firstName,
       lastName: this.user.lastName,
       email: this.user.email,

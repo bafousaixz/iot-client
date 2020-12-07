@@ -19,6 +19,9 @@ export class ChartComponent implements OnInit {
   @Input() chart: string
   chartConfig;
   selected: '123';
+  min: number;
+  max: number;
+  average: number;
   iot: IOTModel;
   stations: StationModel;
   range = new FormGroup({
@@ -42,6 +45,7 @@ export class ChartComponent implements OnInit {
   }
 
   configChart() {
+    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
     let x = [];
     let y = [];
     this.iotService.getIOT(this.stationId).subscribe(data => {
@@ -58,6 +62,9 @@ export class ChartComponent implements OnInit {
       // x = [...new Set(x)];
       if (this.label === 'rainflow' || this.chart === 'rainflow') {
         y = data.map(val => val.rainflow);
+        this.min = Math.min(...y);
+        this.max = Math.max(...y);
+        this.average  = average(y);
         this.chartConfig = new Chart('rainflow', {
           type: 'line',
           data: {
@@ -132,6 +139,9 @@ export class ChartComponent implements OnInit {
       }
       if (this.label ==='windspeed' || this.chart ==='windspeed') {
         y = data.map(val => val.windspeed);
+        this.min = Math.min(...y);
+        this.max = Math.max(...y);
+        this.average  = average(y);
         this.chartConfig = new Chart('windspeed', {
           type: 'line',
           data: {
@@ -206,6 +216,9 @@ export class ChartComponent implements OnInit {
       }
       if (this.label === 'temp' || this.chart === 'temp') {
         y = data.map(val => val.temp);
+        this.min = Math.min(...y);
+        this.max = Math.max(...y);
+        this.average  = average(y);
         this.chartConfig = new Chart('temp', {
           type: 'line',
           data: {

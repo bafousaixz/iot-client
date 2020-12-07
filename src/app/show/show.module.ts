@@ -67,6 +67,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { ImagesComponent } from './images/images.component';
 import { AnalyticConfigComponent } from './analytic-config/analytic-config.component';
 import { ConfigTableComponent } from './config-table/config-table.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import { ConfigTableComponent } from './config-table/config-table.component';
     // DialogComponent,
     AnalyticsComponent,
     TableComponent, 
-    ConfigCarouselComponent, UsersComponent, WellcomeComponent, ChartDetailComponent, ImagesComponent, AnalyticConfigComponent, ConfigTableComponent
+    ConfigCarouselComponent, UsersComponent, WellcomeComponent, ChartDetailComponent, ImagesComponent, AnalyticConfigComponent, ConfigTableComponent, CreateUserComponent
   ],
   imports: [
     FormsModule,

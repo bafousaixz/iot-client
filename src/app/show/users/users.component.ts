@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/middle/services/user.service';
 
@@ -15,6 +16,7 @@ export class UsersComponent implements OnInit {
   popup: boolean;
   user: any;
   constructor(
+    public route: ActivatedRoute,
     public userService: UserService
   ) { }
 
@@ -41,6 +43,11 @@ export class UsersComponent implements OnInit {
         this.getUsers();
       }
     })
+  }
+
+  detail(user) {
+    this.user = user;
+    this.popup = !this.popup;
   }
 
 }

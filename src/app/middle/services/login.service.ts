@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class LoginService {
 
-  url = "http://localhost:3000/users/"
-  _url = "http://localhost:3000/users/login/"
+  url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/"
+  _url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/login/"
 
   constructor(
     private http: HttpClient

@@ -4,11 +4,13 @@ import { UppercasePipe } from './uppercase.pipe';
 import { LoginService } from './services/login.service';
 import { TableComponent } from './table/table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table'  ;
+import { MatTableModule } from '@angular/material/table';
+import { WarningComponent } from './warning/warning.component'  ;
 @NgModule({
   declarations: [
     UppercasePipe,
     TableComponent,
+    WarningComponent,
   ],
   imports: [
     MatPaginatorModule,
@@ -21,6 +23,7 @@ import { MatTableModule } from '@angular/material/table'  ;
   exports:[
     TableComponent,
     UppercasePipe,
+    WarningComponent,
   ]
 })
 export class MiddleModule { }

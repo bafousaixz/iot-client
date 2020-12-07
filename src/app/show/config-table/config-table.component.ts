@@ -28,7 +28,7 @@ export class ConfigTableComponent implements OnInit {
   windspeed: number;
   detect_content: string;
   filename: string;
-  time = 1606753483;
+  time = 1607000000;
   machine_id: string;
   
   range = new FormGroup({
@@ -50,6 +50,7 @@ export class ConfigTableComponent implements OnInit {
     })
     
     this.getIOT();
+    console.log(this.time)
   }
 
   getIOT(){
@@ -58,7 +59,7 @@ export class ConfigTableComponent implements OnInit {
       this.iot.map(x => {
         return x._time = new Date(x.time * 1000);
       })
-      this.time = this.iot[this.iot.length -1].time;
+      // this.time = this.iot[this.iot.length -1].time;
     });
   }
 
@@ -73,6 +74,7 @@ export class ConfigTableComponent implements OnInit {
       time: (this.time + 30*60),
       machine_id: this.id
     }
+    console.log(iot);
     this.iotService.postIOT(iot).subscribe(data => {
       if (data) {
         this.getIOT();

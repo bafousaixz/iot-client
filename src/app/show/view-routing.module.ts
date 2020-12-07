@@ -14,6 +14,7 @@ import { ChartDetailComponent } from './chart-detail/chart-detail.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ImagesComponent } from './images/images.component';
 import { ConfigTableComponent } from './config-table/config-table.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 const ViewRoutes: Routes = [ 
     {
@@ -24,10 +25,6 @@ const ViewRoutes: Routes = [
                 path: ':id',
                 component: ResourcesComponent,
                 children: [
-                    { 
-                        path: 'station',
-                        component: StationComponent
-                    },
                     { 
                         path: 'charts',
                         component: ChartsComponent
@@ -50,7 +47,13 @@ const ViewRoutes: Routes = [
                     },
                     { 
                         path: 'users',
-                        component: UsersComponent
+                        component: UsersComponent,
+                        children: [
+                            { 
+                                path: 'create-user',
+                                component: CreateUserComponent
+                            },
+                        ]
                     },
                 ]
             },

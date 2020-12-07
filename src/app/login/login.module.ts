@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginDirective } from './_directive/login.directive';
 
@@ -12,7 +11,6 @@ import { LoginDirective } from './_directive/login.directive';
   declarations: [
     LoginDirective, 
     LoginComponent, 
-    SignupComponent,
   ],
   imports: [
     FormsModule,
@@ -21,7 +19,10 @@ import { LoginDirective } from './_directive/login.directive';
     HttpClientModule,
     LoginRoutingModule,
   ],
-  providers: []
+  providers: [],
+  exports: [
+    LoginDirective
+  ]
   
 })
 export class LoginModule { }

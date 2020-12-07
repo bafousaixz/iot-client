@@ -2,19 +2,21 @@
     <app-user (OutputValue)="handle($event)"></app-user>
 </div>
 <div *ngIf="isAdmin" class="container-fluid">
+  <div *ngIf="route.children.length === 0">
     <div class="card users-list" style="margin: 10px;">
         <div class="search">
             <i class="fas fa-search"></i>
             <input type="text" [(ngModel)]="content" name="question" placeholder="Search">
         </div>
+        <a routerLink="create-user" class="add-user"><i class="fas fa-user-plus"></i></a>
         <div class="container-qs">
             <table>
                 <tr>
                     <th>#</th>
                     <th>Avata</th>
-                    <th>Username</th>
+                    <th>Name</th>
                 </tr>
-                <tr class="list-question" *ngFor="let user of users$ | async | filter:content; index as i">
+                <tr class="list-user" *ngFor="let user of users$ | async | filter:content; index as i" (click)="detail(user)">
                     <td>
                         {{i + 1}}
                     </td>
@@ -22,13 +24,39 @@
                         <img [src]="user.image" alt="" style="width: 50px; height: 50px; border-radius: 50%;">
                     </td>
                     <td>
-                        {{user.username}}
+                        {{user.lastName}}
                     </td>
                     <td style="width: 30px;">
-                        <h2 (click)="delete(user._id)">Delete</h2>
+                        <h2 (click)="delete(user._id)"><i class="fas fa-trash-alt"></i></h2>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
+
+    <div *ngIf="popup" class="container-popup" (click)="popup = !popup">
+        <div class="container mt-5 d-flex justify-content-center edit-popup">
+            <div class="card-user p-3">
+                <div class="d-flex align-items-center">
+                    <div class="image"> <img [src]="user.image" class="rounded" width="155"> </div>
+                    <div class="ml-3 w-100">
+                        <h4 class="mb-0 mt-0">{{user.lastName}}</h4> <span>{{user.username}}</span>
+                        <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                            <div class="d-flex flex-column"> <span class="articles">Tel</span> 
+                                <span class="number1">12345678</span> 
+                            </div>
+                        </div>
+                        <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                            <div class="d-flex flex-column"> <span class="articles">Adress</span>
+                                 <span class="number1">130 Dong da</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
+

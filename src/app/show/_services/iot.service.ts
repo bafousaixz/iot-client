@@ -8,7 +8,7 @@ import { IOTModel } from '../_models/iot.model';
 })
 export class IotService {
 
-  url = "http://localhost:3000/iots/"
+  url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/iots/"
 
   constructor(
     private http: HttpClient

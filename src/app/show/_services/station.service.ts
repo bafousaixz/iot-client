@@ -8,7 +8,7 @@ import { StationModel } from '../_models/stations.model';
 })
 export class StationService {
 
-  url = "http://localhost:3000/stations/"
+  url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/stations/"
 
   constructor(
     private http: HttpClient

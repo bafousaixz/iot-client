@@ -1,0 +1,28 @@
+<div class="ctn">
+    <div class="left"></div>
+    <div class="card">
+        <div class="container-signup">
+            <div class="auth-pane">
+                <h3>Create account</h3>
+                <form (ngSubmit)="signUp()">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput [(ngModel)]="lastName" placeholder="Name" name="name">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="userName" placeholder="Email Address" name="email">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="password" placeholder="Password" name="password">
+                    </mat-form-field>
+                    <br>
+                    <button mat-raised-button color="primary">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
