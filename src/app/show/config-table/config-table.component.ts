@@ -59,7 +59,7 @@ export class ConfigTableComponent implements OnInit {
       this.iot.map(x => {
         return x._time = new Date(x.time * 1000);
       })
-      // this.time = this.iot[this.iot.length -1].time;
+      this.time = this.iot[this.iot.length -1].time;
     });
   }
 

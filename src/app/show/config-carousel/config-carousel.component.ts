@@ -16,6 +16,9 @@ export class ConfigCarouselComponent implements OnInit {
   ngOnInit(): void {
     this.data$.subscribe(data => {
       this.data = data;
+      this.data.map(x => {
+        return x._time = new Date(x.time * 1000);
+      })
     })
 
   }

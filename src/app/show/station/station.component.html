@@ -20,18 +20,17 @@
               <span> <i class="fas fa-cloud-showers-heavy"></i></span>
               <span> {{station.time | date:'fullDate'}}</span>
               <span>
-                RainFlows: {{station.rainflow}}
+                RainFlows: {{station.rainflow}} mm
               </span>
               <span *ngIf="station.detect_content" style="color: #d35400;">
                 Detect: {{station.detect_content}}
               </span>
             </div>
-
             <div *ngIf="label === 'windspeed'" class="content1">
               <span><i class="fas fa-wind"></i></span>
               <span> {{station.time | date:'fullDate'}}</span>
               <span>
-                WindSpeed: {{station.windspeed}}
+                WindSpeed: {{station.windspeed}} km/h
               </span>
               <span *ngIf="station.detect_content" style="color: #d35400;">
                 Detect: {{station.detect_content}}
@@ -42,7 +41,7 @@
               <span><i class="fas fa-temperature-low"></i></span>
               <span> {{station.time | date:'fullDate'}}</span>
               <span>
-                Temp: {{station.temp}}
+                Temp: {{station.temp}} <sup>o</sup>C
               </span>
               <span *ngIf="station.detect_content" style="color: #d35400;">
                 Detect: {{station.detect_content}}
