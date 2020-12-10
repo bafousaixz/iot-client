@@ -12,6 +12,9 @@ export class ProfileComponent implements OnInit {
 
   image: string;
   avatar: string;
+  firstName: string;
+  lastName: string;
+  tel: number;
   user: UserModel;
   base64textString = [];
   profile1: boolean = true;
@@ -28,6 +31,7 @@ export class ProfileComponent implements OnInit {
   getUser() {
     if(this.token){
       this.userService.getUser().subscribe((data) => {
+        console.log(data)
         this.avatar = data.image;
         this.user = data;
        })
@@ -37,14 +41,15 @@ export class ProfileComponent implements OnInit {
   editUser() {
     let profile: UserModel = {
       _id: this.user._id,
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      email: this.user.email,
-      tel: this.user.tel,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      // email: this.user.email,
+      tel: this.tel,
       image: this.image,
     };
     this.userService.editProfile(profile).subscribe((data) => {
       if(data) {
+        this.getUser();
         this.profile1 = true;
       }
     })

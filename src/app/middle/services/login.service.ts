@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class LoginService {
 
-  url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/"
-  _url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/login/"
+  url = "http://localhost:3000/users/"
+  _url = "http://localhost:3000/users/login/"
 
   constructor(
     private http: HttpClient
@@ -18,7 +18,7 @@ export class LoginService {
     return this.http.post<any>(this._url, user)
   }
 
-  signUp(user : UserModel): Observable<any> {
+  signUp(user : any): Observable<any> {
     return this.http.post<any>(this.url, user)
   }
   

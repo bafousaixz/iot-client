@@ -29,7 +29,7 @@ export class UserComponent implements OnInit {
         this.avatar = data.image;
         this.name = data.lastName;
         this.userName = data.username;
-        this.OutputValue.emit([data._id, data.role]);
+        this.OutputValue.emit([data.userId, data.role]);
        })
     }
   }

@@ -1,7 +1,5 @@
-export class UserModel {
-    _id?: string;
-    username?:string;
-    password?:string;
+export class AuthModel {
+    userId?: string;
     role?: number;
     firstName?: string;
     lastName: string;

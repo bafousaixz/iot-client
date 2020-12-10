@@ -25,17 +25,17 @@
 
                 <div>
                     <div>
-                        <h6>User Name: </h6>
-                        <h5>{{user.username}}</h5>
+                        <h6>First Name: </h6>
+                        <h5>{{user.firstName}}</h5>
                     </div>
                     <div>
-                        <h6>Full Name: </h6>
-                        <h5>{{user.firstName}} {{user.lastName}}</h5>
+                        <h6>Last Name: </h6>
+                        <h5>{{user.lastName}}</h5>
                     </div>
-                    <div>
+                    <!-- <div>
                         <h6>Email: </h6>
                         <h5>{{user.email}}</h5>
-                    </div>
+                    </div> -->
                     <div>
                         <h6>Tel: </h6>
                         <h5>{{user.tel}}</h5>
@@ -46,20 +46,21 @@
             <div *ngIf="profile1 == false">
                 <form class="form1" (ngSubmit)="editUser()">
                     <div class="example-container">
-                        <mat-form-field appearance="fill">
-                          <mat-label>User Name</mat-label>
-                          <input matInput placeholder="Username">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>First Name</mat-label>
+                            <input matInput [(ngModel)]="firstName" placeholder="First Name" name="first-name">
                         </mat-form-field>
                         <br>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Full Name</mat-label>
-                            <input matInput placeholder="Full Name">
-                          </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput [(ngModel)]="lastName" placeholder="Last Name" name="last-name">
+                        </mat-form-field>
                         <br>
-                        <mat-form-field appearance="fill">
+                        <mat-form-field class="example-full-width">
                             <mat-label>Tel</mat-label>
-                            <input matInput placeholder="Tel">
+                            <input matInput [(ngModel)]="tel" placeholder="Tel" name="Tel">
                         </mat-form-field>
+            
                     </div>
                     <!-- <div>
                         <label>First Name: </label>

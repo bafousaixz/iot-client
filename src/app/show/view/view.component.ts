@@ -33,7 +33,6 @@ export class ViewComponent implements OnInit {
       const url = this.stations[0]._id
       // this.router.navigate([`iot/${url}`]);
       this.router.navigateByUrl(`iot/${url}`, { state: { hello: 'world' } });
-      console.log(1)
     })
   }
 

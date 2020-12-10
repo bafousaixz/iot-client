@@ -8,9 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
-  url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/me/"
-  _url = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/list/"
-  urlDelete = "http://node-env.eba-wpapkbmt.us-east-2.elasticbeanstalk.com/users/"
+  url = "http://localhost:3000/users/me/"
+  _url = "http://localhost:3000/users/list/"
+  urlDelete = "http://localhost:3000/users/"
 
   constructor(
     private http: HttpClient

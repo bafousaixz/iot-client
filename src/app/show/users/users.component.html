@@ -16,18 +16,19 @@
                     <th>Avata</th>
                     <th>Name</th>
                 </tr>
-                <tr class="list-user" *ngFor="let user of users$ | async | filter:content; index as i" (click)="detail(user)">
+                <tr class="list-user" *ngFor="let user of users$ | async | filter:content; index as i" >
                     <td>
                         {{i + 1}}
                     </td>
-                    <td >
+                    <td (click)="detail(user)">
                         <img [src]="user.image" alt="" style="width: 50px; height: 50px; border-radius: 50%;">
                     </td>
-                    <td>
+                    <td (click)="detail(user)">
                         {{user.lastName}}
                     </td>
                     <td style="width: 30px;">
-                        <h2 (click)="delete(user._id)"><i class="fas fa-trash-alt"></i></h2>
+                        <!-- <h2 (click)="delete(user._id)">chi tiet</h2> -->
+                        <h2 (click)="delete(user.userId)"><i class="fas fa-trash-alt"></i></h2>
                     </td>
                 </tr>
             </table>
